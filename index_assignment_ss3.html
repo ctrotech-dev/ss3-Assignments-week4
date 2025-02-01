@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS3 Assignment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+    <!-- 🌟 Top Navigation -->
+    <nav class="sticky z-20 top-0 bg-gray-800 py-4 px-6 flex justify-between items-center shadow-md">
+        <h1 class="text-xl font-bold text-yellow-400 flex items-center gap-2">
+            <ion-icon name="book-outline"></ion-icon> SS3 Assignments
+        </h1>
+        <button class="text-white flex items-center justify-center bg-gray-700 px-3 py-1 rounded-md">
+            <ion-icon name="menu-outline"></ion-icon>
+        </button>
+    </nav>
+
+    <!-- 📌 Main Container -->
+    <div class="flex flex-col items-center w-full max-w-2xl mx-auto mt-6">
+
+        <!-- 📝 Header Section -->
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-semibold flex items-center gap-2">
+                <ion-icon name="school-outline"></ion-icon> Welcome, SS2 Students!
+            </h2>
+            <p class="text-gray-400 text-sm">Select a subject to view your assignments.</p>
+        </div>
+
+        <!-- 🔄 Tab Buttons -->
+        <div class="sticky flex left-0 right-0 z-30 w-full top-0 py-2.5 px-4 bg-gray-900">
+        <div class="flex w-full max-w-sm bg-gray-800 p-1 gap-1 rounded-lg">
+            <button id="physicsTab" class="tab-btn w-1/2 bg-yellow-400 text-gray-900 py-2 rounded-md transition-all flex items-center justify-center gap-1">
+                <ion-icon name="planet-outline"></ion-icon> Physics
+            </button>
+            <button id="chemistryTab" class="tab-btn w-1/2 bg-gray-700 py-2 rounded-md transition-all flex items-center justify-center gap-1">
+                <ion-icon name="flask-outline"></ion-icon> Chemistry
+            </button>
+        </div>
+        </div>
+        <!-- 📜 Assignment Container -->
+        <div id="assignmentContainer" class="w-full mt-6 px-4 pb-4 space-y-4 transition-opacity duration-500"></div>
+    </div>
+
+          <!-- 📝 Alert Message -->
+        <div id="alertMessage" class="fixed top-0 left-0 right-0 bg-yellow-400 text-gray-900 p-4 rounded-b-md shadow-md transform -translate-y-full transition-transform duration-500 ease-in-out flex justify-between items-center z-50">
+            <span class="text-sm">Want more info about assignments? Click on the menu icon at the top right!</span>
+            <button id="closeAlert" class="text-xl font-bold text-gray-900 hover:text-gray-700">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+    
+   <footer id="more" class="bg-gray-900 text-gray-400 h-full py-10 px-6 top-0 fixed w-full translate-y-full transition-transform duration-300 z-50 overflow-auto">
+        <section class="bg-gray-900 text-gray-300 rounded-lg shadow-lg w-full mb-24">
+    <h3 class="text-2xl text-center font-semibold mb-4 flex items-center gap-3 text-yellow-400">
+        <ion-icon name="information-circle-outline" class="text-3xl"></ion-icon> Assignment Submission Guide
+    </h3>
+    <p class="mb-6 text-center text-gray-300">Here are some helpful tips and resources for submitting your assignments:</p>
+    
+    <ul class="space-y-6">
+        <li class="flex items-start gap-4">
+            <ion-icon name="calendar-outline" class="flex-shrink-0 text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">1. Submission Deadlines</h4>
+                <p>Make sure to submit your assignments before the deadline (Monday: 3rd: Febuary ). Late submissions might not be accepted!</p>
+            </div>
+        </li>
+        <li class="flex items-start gap-4">
+            <ion-icon name="document-text-outline" class="flex-shrink-0 text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">2. File Format(optional)</h4>
+                <p>Your assignments should be submitted in PDF format. If you have any trouble, feel free to ask for assistance.</p>
+            </div>
+        </li>
+        <li class="flex items-start gap-4">
+            <ion-icon name="pencil-outline" class="flex-shrink-0 text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">3. Assignment Length</h4>
+                <p>Ensure your assignment is detailed but concise. Answer all the questions fully and clearly.</p>
+            </div>
+        </li>
+        <li class="flex items-start gap-4">
+            <ion-icon name="help-circle-outline" class="flex-shrink-0 text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">4. Resources for Help</h4>
+                <p>If you need extra help, check out the resources below or contact your teacher:</p>
+                <ul class="pl-4 space-y-2">
+                    <li>- <a href="https://www.khanacademy.org/science/physics" class="text-yellow-400 hover:underline" target="_blank">Physics Lab Materials</a></li>
+                    <li>- <a href="https://chem.libretexts.org/Bookshelves" class="text-yellow-400 hover:underline" target="_blank">Chemistry Assignment Resources</a></li>
+                    <li>- <a href="https://www.khanacademy.org/science/chemistry" class="text-yellow-400 hover:underline" target="_blank">Online Physics & Chemistry Tutorials</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="flex items-start gap-4">
+            <ion-icon name="flex-shrink-0 chatbubble-outline" class="text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">5. Need Help?</h4>
+                <p>If you’re having trouble, don’t hesitate to ask me <a href="mailto:ctrotech.dev@gmail.com" class="hover:text-yellow-400 transition font-semibold text-xl">here</a> . You can also visit the FAQ section on the portal for common issues.</p>
+            </div>
+        </li>
+    </ul>
+</section>
+       
+       <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-center md:text-left">
+        <!-- Company Info -->
+        <div>
+            <div class="flex justify-center md:justify-start items-center gap-2">
+                <img src="logo.png" alt="Ctrotech Tutor Insights Logo" class="w-12 h-12">
+                <h2 class="text-xl font-bold text-yellow-500">Ctrotech Tutor Insights</h2>
+            </div>
+            <p class="mt-2 text-sm">Bringing ideas to life with technology, education, and community.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+            <h3 class="text-lg font-semibold text-yellow-500 mb-3">Quick Links</h3>
+            <ul class="space-y-2">
+                <li><a href="#aboutus.html" class="hover:text-yellow-400 transition">About Us</a></li>
+                <li><a href="#privacypolicy.html" class="hover:text-yellow-400 transition">Privacy Policy</a></li>
+                <li><a href="#terms_condition.html" class="hover:text-yellow-400 transition">Terms & Conditions</a></li>
+                <li><a href="#contactus.html" class="hover:text-yellow-400 transition">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+            <h3 class="text-lg font-semibold text-yellow-500 mb-3">Follow Us</h3>
+            <div class="flex justify-center md:justify-start space-x-4 text-2xl">
+                <a href="mailto:ctrotech.dev@gmail.com" class="hover:text-yellow-400 transition"><ion-icon name="mail-outline"></ion-icon></a>
+                <a href="https://wa.me/qr/3PRCNQEHBLW7E1" class="hover:text-yellow-400 transition"><ion-icon name="logo-whatsapp"></ion-icon></a>
+                <a href="https://www.instagram.com/ctronela?igsh=MXB4NmY3aXA4dDBzZw==" class="hover:text-yellow-400 transition"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.linkedin.com/in/odejobi-abiola-175a1933a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="hover:text-yellow-400 transition"><ion-icon name="logo-linkedin"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+        
+        <!-- Copyright Section -->
+        <div class="border-t border-gray-700 mt-6 pt-4 text-center text-sm">
+            &copy; 2025 Ctrotech Tutor Insights. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+    // 📌 Assignment Data
+const assignments = {
+    physics: [
+    { 
+        id: 1, 
+        question: "What is gravitational force?", 
+        hint: "Think of the force that attracts objects towards the Earth.",
+        answer: "Gravitational force is the force of attraction between two masses. On Earth, it causes objects to fall towards the ground."
+    },
+    { 
+        id: 2, 
+        question: "How is the electric force calculated?", 
+        hint: "It involves charges and distance between them.",
+        answer: "The electric force between two charges is calculated using Coulomb's law: F = k * (q1 * q2) / r², where k is Coulomb's constant, q1 and q2 are the charges, and r is the distance between them."
+    },
+    { 
+        id: 3, 
+        question: "What is the difference between conductivity and resistivity?", 
+        hint: "One refers to the ability to conduct, the other to the resistance of a material.",
+        answer: "Conductivity is the ability of a material to conduct electricity, while resistivity is the measure of a material's opposition to electric current."
+    },
+    { 
+        id: 4, 
+        question: "What is Ohm’s Law?", 
+        hint: "It relates voltage, current, and resistance.",
+        answer: "Ohm’s Law states that the current (I) passing through a conductor is directly proportional to the voltage (V) across it and inversely proportional to its resistance (R). It is given by the formula V = IR."
+    },
+    { 
+        id: 5, 
+        question: "How do you calculate the power in an electrical circuit?", 
+        hint: "It involves voltage and current.",
+        answer: "Power (P) in an electrical circuit is calculated using the formula P = VI, where V is the voltage and I is the current."
+    },
+    { 
+        id: 6, 
+        question: "What is the peak value of an AC voltage?", 
+        hint: "It’s the maximum value the voltage reaches.",
+        answer: "The peak value of an AC voltage is the maximum amplitude of the alternating voltage, measured from the zero crossing point to the highest or lowest value."
+    },
+    { 
+        id: 7, 
+        question: "What is the RMS (Root Mean Square) value of an AC voltage?", 
+        hint: "It represents the effective value of the AC voltage.",
+        answer: "The RMS value of an AC voltage is the value of DC voltage that produces the same power in a resistive load as the AC voltage. It is calculated as V_RMS = V_peak / √2."
+    },
+    { 
+        id: 8, 
+        question: "What is a pure resistor in an AC circuit?", 
+        hint: "It resists the flow of current without affecting the frequency.",
+        answer: "A pure resistor in an AC circuit opposes the flow of current but does not change the frequency of the AC signal. The current and voltage are in phase."
+    },
+    { 
+        id: 9, 
+        question: "What happens in a pure capacitor in an AC circuit?", 
+        hint: "The current leads the voltage.",
+        answer: "In a pure capacitor, the current leads the voltage by 90 degrees. The impedance of a capacitor decreases with increasing frequency."
+    },
+    { 
+        id: 10, 
+        question: "What happens in a pure inductor in an AC circuit?", 
+        hint: "The voltage leads the current.",
+        answer: "In a pure inductor, the voltage leads the current by 90 degrees. The impedance of an inductor increases with increasing frequency."
+    },
+    { 
+        id: 11, 
+        question: "What is the formula for centripetal force in circular motion?", 
+        hint: "It depends on mass, velocity, and radius.",
+        answer: "The formula for centripetal force is F_c = mv² / r, where m is the mass, v is the velocity, and r is the radius of the circular path."
+    },
+    { 
+        id: 12, 
+        question: "What is the relationship between frequency and time period in simple harmonic motion?", 
+        hint: "They are inversely related.",
+        answer: "The frequency (f) is the reciprocal of the time period (T): f = 1 / T."
+    },
+    { 
+        id: 13, 
+        question: "What is the formula for the gravitational force between two masses?", 
+        hint: "It involves mass and distance.",
+        answer: "The gravitational force between two masses is given by F = G * (m1 * m2) / r², where G is the gravitational constant, m1 and m2 are the masses, and r is the distance between the centers of the two masses."
+    },
+    { 
+        id: 14, 
+        question: "How does the resistance of a conductor change with temperature?", 
+        hint: "Consider how particles move at different temperatures.",
+        answer: "The resistance of a conductor generally increases with temperature, as the particles of the conductor vibrate more, hindering the flow of electrons."
+    },
+    { 
+        id: 15, 
+        question: "What is the energy stored in a capacitor?", 
+        hint: "It depends on voltage and capacitance.",
+        answer: "The energy (E) stored in a capacitor is given by the formula E = 1/2 * C * V², where C is the capacitance and V is the voltage across the capacitor."
+    },
+    { 
+        id: 16, 
+        question: "What is the formula for the period of an object in circular motion?", 
+        hint: "It depends on the velocity and radius.",
+        answer: "The period (T) of an object in circular motion is given by T = 2πr / v, where r is the radius of the circle and v is the velocity of the object."
+    },
+    { 
+        id: 17, 
+        question: "What is the phase difference between voltage and current in a pure inductor?", 
+        hint: "The voltage leads the current.",
+        answer: "In a pure inductor, the phase difference between voltage and current is 90 degrees, with the voltage leading the current."
+    },
+    { 
+        id: 18, 
+        question: "What is the formula for electric power in an AC circuit?", 
+        hint: "It involves voltage, current, and phase angle.",
+        answer: "The electric power in an AC circuit is given by P = VI cos(θ), where V is the voltage, I is the current, and θ is the phase angle between voltage and current."
+    },
+    { 
+        id: 19, 
+        question: "What is the formula for the electric field between two point charges?", 
+        hint: "It depends on the charges and the distance.",
+        answer: "The electric field (E) between two point charges is given by E = k * (q / r²), where k is Coulomb's constant, q is the charge, and r is the distance from the charge."
+    },
+    { 
+        id: 20, 
+        question: "How do you calculate the total resistance in a series circuit?", 
+        hint: "Add up the individual resistances.",
+        answer: "In a series circuit, the total resistance (R_total) is the sum of the individual resistances: R_total = R1 + R2 + ... + Rn."
+    }
+],
+    
+    chemistry: [
+  {
+    id: 1,
+    question: "What is the definition of nuclear fission?",
+    hint: "Think about the process where an atomic nucleus splits into smaller parts.",
+    answer: "The splitting of an atomic nucleus into smaller particles"
+  },
+  {
+    id: 2,
+    question: "What type of radiation is emitted in alpha decay?",
+    hint: "This type of radiation consists of helium nuclei.",
+    answer: "Alpha particles (²⁴He)"
+  },
+  {
+    id: 3,
+    question: "What is the primary characteristic of a beta particle?",
+    hint: "It's a high-energy electron.",
+    answer: "A negatively charged electron"
+  },
+  {
+    id: 4,
+    question: "What is the unit of measurement for radioactive decay?",
+    hint: "This unit is used to measure the activity of a radioactive substance.",
+    answer: "Bequerels (Bq)"
+  },
+  {
+    id: 5,
+    question: "What is nuclear fusion?",
+    hint: "This process involves combining two small nuclei to form a larger one.",
+    answer: "The combining of two small nuclei to form a larger nucleus"
+  },
+  {
+    id: 6,
+    question: "What is the process of nuclear decay?",
+    hint: "It's the transformation of an unstable nucleus into a more stable one.",
+    answer: "The transformation of an unstable nucleus into a more stable one"
+  },
+  {
+    id: 7,
+    question: "What is the main difference between nuclear fission and nuclear fusion?",
+    hint: "Fission splits nuclei, fusion combines them.",
+    answer: "Fission splits nuclei, fusion combines nuclei"
+  },
+  {
+    id: 8,
+    question: "Which element is commonly used as fuel in nuclear reactors?",
+    hint: "This element is known for its high energy release in reactors.",
+    answer: "Uranium-235"
+  },
+  {
+    id: 9,
+    question: "What does the half-life of a radioactive element represent?",
+    hint: "It refers to the time it takes for half of the substance to decay.",
+    answer: "The time it takes for half of the substance to decay"
+  },
+  {
+    id: 10,
+    question: "What is a common use of gamma radiation?",
+    hint: "This radiation is used in sterilizing medical tools.",
+    answer: "Sterilization of medical equipment"
+  },
+  {
+    id: 11,
+    question: "What type of radiation is the most penetrating?",
+    hint: "This type of radiation can penetrate the most materials.",
+    answer: "Gamma radiation"
+  },
+  {
+    id: 12,
+    question: "What is the charge of an alpha particle?",
+    hint: "This particle has a positive charge.",
+    answer: "Positive"
+  },
+  {
+    id: 13,
+    question: "What is the chemical symbol for Uranium?",
+    hint: "It's a single letter symbol, commonly used in chemistry.",
+    answer: "U"
+  },
+  {
+    id: 14,
+    question: "Which process releases a large amount of energy, commonly used in stars?",
+    hint: "This process is the opposite of nuclear fission.",
+    answer: "Nuclear fusion"
+  },
+  {
+    id: 15,
+    question: "What type of nuclear decay involves the emission of a high-energy photon?",
+    hint: "This type of decay involves gamma rays.",
+    answer: "Gamma decay"
+  },
+  {
+    id: 16,
+    question: "What is the principle behind a Geiger counter?",
+    hint: "This device detects ionizing radiation.",
+    answer: "Detecting ionizing radiation"
+  },
+  {
+    id: 17,
+    question: "Which element undergoes alpha decay to form Thorium-234?",
+    hint: "This element is the heaviest naturally occurring element.",
+    answer: "Uranium-238"
+  },
+  {
+    id: 18,
+    question: "What is the main product of a nuclear fission reaction?",
+    hint: "This reaction releases a large amount of energy.",
+    answer: "Energy"
+  },
+  {
+    id: 19,
+    question: "Which of the following is not a type of nuclear radiation?",
+    hint: "This is an incorrect type of radiation.",
+    answer: "Delta"
+  },
+  {
+    id: 20,
+    question: "Which type of decay involves the emission of an electron?",
+    hint: "This type of decay is called beta decay.",
+    answer: "Beta decay"
+  },
+  {
+    id: 21,
+    question: "What is the atomic number of Uranium?",
+    hint: "It's the atomic number of the element in question.",
+    answer: "92"
+  },
+  {
+    id: 22,
+    question: "What is the result of a nuclear chain reaction?",
+    hint: "This process releases energy over time.",
+    answer: "Sustained release of energy"
+  },
+  {
+    id: 23,
+    question: "What is used to control the rate of fission reactions in nuclear reactors?",
+    hint: "These rods absorb neutrons to control the reaction rate.",
+    answer: "Control rods"
+  },
+  {
+    id: 24,
+    question: "What is the primary risk of radiation exposure?",
+    hint: "This risk involves damage to living tissues.",
+    answer: "Damage to living tissues"
+  },
+  {
+    id: 25,
+    question: "What is the decay product of Carbon-14?",
+    hint: "This element is commonly found in organic material.",
+    answer: "Nitrogen-14"
+  }
+]
+};
+
+// 📌 Select Elements
+const menuButton = document.querySelector("nav button"); // Menu button
+const footer = document.getElementById("more"); // Footer section
+let isFooterVisible = false;
+
+// 📌 Toggle Footer Visibility on Click
+menuButton.addEventListener("click", () => {
+    isFooterVisible = !isFooterVisible;
+    updateFooterState();
+});
+
+// 📌 Swipe to Close Footer
+let startY = 0;
+
+footer.addEventListener("touchstart", (event) => {
+    startY = event.touches[0].clientY;
+});
+
+footer.addEventListener("touchmove", (event) => {
+    let currentY = event.touches[0].clientY;
+    let deltaY = currentY - startY;
+
+    if (deltaY > 100) { // If swipe down more than 50px
+        isFooterVisible = false;
+        updateFooterState();
+    }
+});
+
+// 📌 Update Footer State
+function updateFooterState() {
+    if (isFooterVisible) {
+        footer.classList.remove("translate-y-full");
+        footer.classList.add("translate-y-0");
+    } else {
+        footer.classList.remove("translate-y-0");
+        footer.classList.add("translate-y-full");
+    }
+}
+
+// 📌 Select Elements
+const physicsTab = document.getElementById("physicsTab");
+const chemistryTab = document.getElementById("chemistryTab");
+const assignmentContainer = document.getElementById("assignmentContainer");
+
+// 📌 Function to Render Questions & Save State
+function renderQuestions(subject) {
+    // Save selected tab to localStorage
+    localStorage.setItem("selectedSubject", subject);
+
+    assignmentContainer.style.opacity = "0"; // Fade out effect
+    setTimeout(() => {
+        assignmentContainer.innerHTML = ""; // Clear previous questions
+        assignments[subject].forEach(q => {
+            const questionEl = document.createElement("div");
+            questionEl.className = "bg-gray-800 p-4 rounded-md shadow-md text-sm transition-all font-semibold transform hover:scale-105 hover:bg-gray-900 cursor-pointer";
+
+            // ✅ Styled Question Number
+            const questionNumber = document.createElement("span");
+            questionNumber.className = "text-yellow-400 font-extrabold text-lg";
+            questionNumber.textContent = `Q${q.id}: `;
+
+            // ✅ Question Text
+            const questionText = document.createElement("span");
+            questionText.textContent = q.question;
+
+            // ✅ Hint Section (Styled Separately)
+            const hintEl = document.createElement("div");
+            hintEl.className = "text-gray-400 text-xs italic mt-2";
+            hintEl.textContent = `Hint: ${q.hint}`;
+
+            // 🏗️ Append Elements
+            questionEl.appendChild(questionNumber);
+            questionEl.appendChild(questionText);
+            questionEl.appendChild(hintEl);
+
+            assignmentContainer.appendChild(questionEl);
+        });
+
+        // 🏆 Update Active Tab UI
+        if (subject === "physics") {
+            physicsTab.classList.add("bg-yellow-400", "text-gray-900");
+            chemistryTab.classList.remove("bg-yellow-400", "text-gray-900");
+            chemistryTab.classList.add("bg-gray-700");
+        } else {
+            chemistryTab.classList.add("bg-yellow-400", "text-gray-900");
+            physicsTab.classList.remove("bg-yellow-400", "text-gray-900");
+            physicsTab.classList.add("bg-gray-700");
+        }
+
+        assignmentContainer.style.opacity = "1"; // Fade in effect
+
+        // 🚀 Restore Scroll Position if Saved
+        const savedScrollPosition = localStorage.getItem(`${subject}-scrollPosition`);
+        if (savedScrollPosition) {
+            assignmentContainer.scrollTop = savedScrollPosition;
+        }
+    }, 200);
+}
+
+// 🚀 Load Last Selected Subject or Default to Physics
+const savedSubject = localStorage.getItem("selectedSubject") || "physics";
+renderQuestions(savedSubject);
+
+// 🌟 Event Listeners for Tab Switching
+physicsTab.addEventListener("click", () => renderQuestions("physics"));
+chemistryTab.addEventListener("click", () => renderQuestions("chemistry"));
+
+// 📌 Save Scroll Position on Scroll
+assignmentContainer.addEventListener("scroll", () => {
+    const currentScrollPosition = assignmentContainer.scrollTop;
+    const currentSubject = localStorage.getItem("selectedSubject") || "physics";
+    localStorage.setItem(`${currentSubject}-scrollPosition`, currentScrollPosition);
+});
+
+function showAlert() {
+            const alertMessage = document.getElementById("alertMessage");
+            alertMessage.classList.remove("-translate-y-full"); // Slide down
+
+            // Auto-hide the alert after 5 seconds
+            setTimeout(() => {
+                closeAlert(); // Close the alert automatically after 5 seconds
+            }, 5000);
+        }
+
+        // Function to hide the alert message with animation
+        function closeAlert() {
+            const alertMessage = document.getElementById("alertMessage");
+            alertMessage.classList.add("-translate-y-full"); // Slide up
+        }
+
+        // Show alert when the page loads
+        document.addEventListener("DOMContentLoaded", showAlert);
+
+        // Event listener for close button in alert message
+        const closeAlertButton = document.getElementById("closeAlert");
+        closeAlertButton.addEventListener("click", closeAlert);
+    </script>
+</body>
+</html>
